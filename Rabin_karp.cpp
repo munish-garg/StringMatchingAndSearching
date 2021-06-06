@@ -13,7 +13,7 @@ int lcs(string a, string b, int i, int j){
 	op1 = op2 = 0;
 	if(a[i] == b[j])
 		return 1 + lcs(a, b, i+1, j+1);
-	op2 = lcs(a, b, i, j+1);
+	op1 = lcs(a, b, i, j+1);
 	op2 = lcs(a, b, i+1, j);
 	return max(op1, op2);
 }

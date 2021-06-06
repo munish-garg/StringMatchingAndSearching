@@ -5,17 +5,20 @@
 #include<bits/stdc++.h>
 #define int long long int 
 using namespace std;
-int lcs(string a, string b, int i, int j){
+int lcs(string a, string b, int i, int j, int dp[][100]){
 	if(i==a.size() || j==b.size()){
 		return 0;
+	}
+	if(dp[i][j]!=-1){
+		return dp[i][j];
 	}
 	int op1, op2;
 	op1 = op2 = 0;
 	if(a[i] == b[j])
-		return 1 + lcs(a, b, i+1, j+1);
-	op1 = lcs(a, b, i, j+1);
-	op2 = lcs(a, b, i+1, j);
-	return max(op1, op2);
+		return 1 + lcs(a, b, i+1, j+1, dp);
+	op1 = lcs(a, b, i, j+1, dp);
+	op2 = lcs(a, b, i+1, j, dp);
+	return dp[i][j] = max(op1, op2);
 }
 int32_t main(){
 	ios_base::sync_with_stdio(false);
@@ -27,7 +30,13 @@ int32_t main(){
 	#endif
 	string a, b;
 	cin>>a>>b;
-	int ans = lcs(a, b, 0, 0);
+	int dp[a.size()][100];
+	for(int i=0;i<a.size();i++){
+		for(int j=0;j<b.size();j++){
+			dp[i][j] = -1;
+		}
+	}
+	int ans = lcs(a, b, 0, 0, dp);
 	cout<<ans<<endl;
 	return 0;
 }

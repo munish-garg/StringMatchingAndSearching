@@ -28,22 +28,22 @@ int32_t main(){
 		int size = r-l+1;
 		int a[size];
 		for(int i=0;i<size;i++) a[i] = 1;
-		for(int i=l;i<=r;i++){
-			for(int j=2;j<=sqrt(i);j++){
-				if(i%j==0){
+			for(int i=l;i<=r;i++){
+				for(int j=2;j<=sqrt(i);j++){
+					if(i%j==0){
 					//It means that the particular number is not prime..
-					a[i-l] = 0;
-					break;
+						a[i-l] = 0;
+						break;
+					}
 				}
 			}
-		}
-		for(int i=0;i<size;i++){
-			if(a[i] == 1 and l+i!=1){
-				int ans = l+i;
-				cout<<ans<<endl;
+			for(int i=0;i<size;i++){
+				if(a[i] == 1 and l+i!=1){
+					int ans = l+i;
+					cout<<ans<<endl;
+				}
 			}
+			cout<<endl;
 		}
-		cout<<endl;
+		return 0;
 	}
-	return 0;
-}
